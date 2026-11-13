@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="light" name="color-scheme"/>
+<meta content="#f4f2eb" name="theme-color"/>
+<meta content="양은혜 | 디지털 마케팅 · 디지털 플랫폼 · MarTech 포트폴리오" name="description"/>
+<title>양은혜 | 디지털 마케팅·플랫폼·MarTech</title>
+<style>
+:root { --bg:#f4f2eb; --paper:#fbfaf6; --ink:#181b18; --soft-ink:#484d43; --line:#d6d7ce; --acid:#d9ee78; --olive:#79865e; --night:#1b211b; --muted:#747a6e; --space:clamp(20px,5vw,88px); --radius:5px; }
+* { box-sizing:border-box; }
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Avenir Next","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+body.no-scroll{overflow:hidden}
+::selection{background:var(--acid);color:var(--ink)}
+a{color:inherit;text-decoration:none}button{font:inherit}button:focus-visible,a:focus-visible{outline:3px solid #7d9756;outline-offset:4px}img{max-width:100%;display:block}button{cursor:pointer}p,h1,h2,h3,h4{margin:0}small{font-size:inherit}
+.container{max-width:1700px;margin-inline:auto;padding-inline:var(--space)}
+.section{padding-block:clamp(96px,11vw,180px)}
+.section-line{border-top:1px solid var(--line)}
+.section-intro{display:grid;grid-template-columns: minmax(120px,24%) minmax(0,1fr);gap:28px;margin-bottom:clamp(48px,6vw,88px)}
+.kicker,.eyebrow{font-weight:700;font-size:clamp(10px,.78vw,12px);letter-spacing:.11em;text-transform:uppercase;line-height:1.6}
+.section-intro .kicker{padding-top:12px;color:var(--olive)}
+.big-heading{font-size:clamp(44px,7.1vw,110px);line-height:1.04;letter-spacing:-.065em;font-weight:650;max-width:1110px}
+.big-heading em,.hero h1 em,.closing h2 em,.numbers h2 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.065em}
+.section-intro .intro-right > p{font-size:clamp(15px,1.3vw,19px);line-height:1.75;max-width:630px;color:var(--soft-ink);margin-top:24px}
+.fade-up{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.18,1)}.js .fade-up:not(.in-view){opacity:0;transform:translateY(22px)}
+/* top navigation */
+.progress-line{height:3px;position:fixed;z-index:51;left:0;top:0;width:var(--read,0%);background:var(--olive);pointer-events:none}
+.site-header{z-index:50;position:sticky;top:0;background:rgba(244,242,235,.92);backdrop-filter:blur(15px);border-bottom:1px solid rgba(45,50,37,.14)}
+.header-inner{height:75px;display:flex;align-items:center;gap:36px}
+.wordmark{display:inline-flex;align-items:center;white-space:nowrap;font-size:27px;letter-spacing:-.07em;font-weight:740;line-height:1}.wordmark span{color:var(--olive)}
+.menu{display:flex;align-items:center;gap:clamp(16px,2.2vw,39px);margin-left:auto}
+.menu a{font-size:12px;font-weight:660;transition:opacity .2s;letter-spacing:.035em}.menu a:hover{opacity:.55}
+.menu-controls{display:flex;align-items:center;gap:12px}.lang-link{display:flex;align-items:center;gap:9px;border:1px solid var(--ink);padding:9px 13px;font-size:12px;font-weight:800;white-space:nowrap;background:transparent}.lang-link:hover{background:var(--ink);color:var(--bg)}.lang-flag{font-size:15px}
+.hamburger{border:1px solid var(--line);width:39px;height:39px;background:transparent;display:none;align-items:center;justify-content:center;font-size:21px}
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:min(920px,calc(100svh - 75px));display:grid;grid-template-rows:1fr auto;isolation:isolate}
+.hero::before{content:"";position:absolute;width:550px;height:550px;border:1px solid #e1e4d5;border-radius:50%;z-index:-1;left:-280px;top:100px;pointer-events:none}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.8fr);gap:clamp(22px,3.5vw,65px);align-items:center;padding-block:clamp(56px,7vw,118px) 65px}
+.hero-copy{position:relative;z-index:3}.hero-copy .eyebrow{max-width:470px;color:var(--olive)}
+.hero h1{font-size:clamp(62px,7.6vw,128px);letter-spacing:-.084em;font-weight:670;line-height:1.03;margin:38px 0 32px;max-width:1000px}
+html[lang="ko"] .hero h1{font-size:clamp(47px,5.9vw,98px);letter-spacing:-.075em;line-height:1.16}
+html[lang="ko"] .hero h1 em{font-family:Georgia,'Apple SD Gothic Neo','Malgun Gothic',serif;font-style:normal;font-weight:350}
+.hero h1 em{position:relative;z-index:1;white-space:nowrap}
+.hero h1 em::after{content:"";height:.13em;background:var(--acid);position:absolute;left:0;right:0;bottom:.05em;z-index:-1;transform:scaleX(.9);transform-origin:left}
+.hero-bio{font-size:clamp(15px,1.27vw,19px);line-height:1.8;color:var(--soft-ink);max-width:520px}
+.hero-actions{margin-top:36px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.button-solid{display:inline-flex;align-items:center;gap:30px;padding:16px 20px;background:var(--night);color:#fff;font-weight:650;font-size:13px;transition:background .25s,color .25s,transform .25s}.button-solid:hover{background:var(--olive);transform:translateY(-3px)}
+.button-link{display:inline-flex;gap:14px;align-items:center;font-weight:660;font-size:13px;border-bottom:1px solid var(--ink);padding-block:9px}.arrow{font-family:Arial,sans-serif;font-size:20px;font-weight:300}
+.portrait-wrap{position:relative;align-self:center;margin-right:clamp(0px,2vw,35px);aspect-ratio:4/4.9;max-height:700px}
+.portrait-image{width:100%;height:100%;object-fit:cover;object-position:50% 34%;filter:saturate(.82);border-radius:var(--radius)}
+.portrait-wrap::before{content:"";display:block;position:absolute;left:-24px;top:-23px;right:24px;bottom:23px;border:1px solid #c8d0b9;z-index:-1}
+.portrait-stamp{position:absolute;top:-20px;right:-25px;width:96px;height:96px;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:50%;background:var(--acid);transform:rotate(12deg);font-size:11px;line-height:1.4;font-weight:850;letter-spacing:.04em;padding:10px}
+.portrait-label{position:absolute;bottom:-24px;left:22px;background:var(--paper);padding:12px 17px;border:1px solid var(--line);font-size:10px;letter-spacing:.14em;font-weight:750;max-width:90%}
+.hero-bottom{border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px}
+.hero-bottom span{font-size:10px;letter-spacing:.11em;font-weight:720}.hero-bottom .scroll-icon{font-size:23px}
+/* ticker */
+
+/* stats */
+.numbers{padding-block:clamp(90px,10vw,150px);background:var(--night);color:var(--paper)}.numbers .intro-head{display:flex;justify-content:space-between;align-items:start;gap:20px}.numbers .kicker{color:var(--acid)}.numbers h2{font-size:clamp(43px,6vw,86px);letter-spacing:-.065em;line-height:1.07;font-weight:580;margin:30px 0 62px}.numbers h2 em{color:var(--acid)}
+.stat-grid{display:grid;grid-template-columns:1.3fr repeat(3,1fr);border-top:1px solid rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.28)}.stat{padding:28px clamp(12px,2vw,30px) 36px;border-right:1px solid rgba(255,255,255,.25)}.stat:first-child{padding-left:0}.stat:last-child{border-right:none}.stat .stat-number{font-size:clamp(58px,8vw,130px);font-weight:590;letter-spacing:-.09em;line-height:1.15;white-space:nowrap}.stat:first-child .stat-number{color:var(--acid)}.stat p{color:rgba(255,255,255,.7);font-size:11px;line-height:1.55;letter-spacing:.08em;font-weight:640;text-transform:uppercase;margin-top:12px}.stats-note{color:rgba(255,255,255,.52);font-size:11px;line-height:1.55;margin-top:18px}
+/* about */
+.about-section{background:var(--paper)}.about-content{display:grid;grid-template-columns:minmax(260px,.92fr) minmax(0,1fr);gap:clamp(36px,8vw,125px)}
+.about-pull{font-size:clamp(26px,3vw,49px);line-height:1.35;letter-spacing:-.047em;font-weight:540;max-width:700px}.about-pull::before{content:'“';font:70px/0.8 Georgia;color:var(--olive);display:block;margin-bottom:10px}
+.about-body p{color:var(--soft-ink);font-size:clamp(15px,1.2vw,18px);line-height:1.88;margin-bottom:24px}.about-body p:last-child{margin-bottom:0}
+.about-coda{font-weight:720!important;color:var(--ink)!important}
+.about-tags{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}.about-tags span{border:1px solid var(--line);font-weight:680;text-transform:uppercase;letter-spacing:.06em;font-size:10px;padding:11px 14px}
+/* work */
+.work-section{background:var(--bg)}.work-head .intro-right{display:flex;flex-direction:column;align-items:start}.work-head .intro-right>p{max-width:700px}
+.project-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.5vw,32px)}
+.project-card{position:relative;min-width:0;border:0;background:transparent;text-align:left;padding:0;color:var(--ink);display:block;grid-column:span 6}
+.project-card.card-wide{grid-column:span 7}.project-card.card-narrow{grid-column:span 5}
+.project-art{position:relative;overflow:hidden;aspect-ratio:1.55;border-radius:var(--radius);background:#e1e5d4;display:flex;align-items:center;justify-content:center}
+.card-narrow .project-art{aspect-ratio:1.21}
+.project-card img{width:100%;height:100%;object-fit:cover;transition:transform .85s cubic-bezier(.15,.65,.23,1)}.project-card:hover img{transform:scale(1.045)}
+.project-art img.fit-top{object-position:top center}.project-art img.fit-center{object-position:center}
+.project-art .mock-browser{position:absolute;width:90%;height:73%;left:5%;top:13%;border:1px solid #b8c0b3;box-shadow:0 18px 32px rgba(0,0,0,.09);overflow:hidden;background:white;border-radius:7px}.mock-browser img{object-fit:cover;object-position:top left}
+.project-art .mock-phone{position:absolute;right:6%;bottom:-15%;width:25%;height:98%;border:6px solid #242923;border-radius:25px;overflow:hidden;background:white;box-shadow:0 14px 32px #0005;transform:rotate(7deg)}.project-art .mock-phone img{object-fit:cover;object-position:top center}
+.project-art.art-bonvoy{background:#d5dedb}.project-art.art-hub{background:#ECEEEA;padding:6%}
+.project-art.art-dashboard{padding:6%;background:#E7EBEC}
+.project-art.art-hub img{width:100%;height:100%;object-fit:contain;object-position:center;border:0;box-shadow:none}
+.project-art.art-channels{background:#262c27;color:#f4f2eb;flex-direction:column;gap:clamp(12px,2.5vw,27px)}.channel-row{width:86%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #74796c;padding:0 0 12px;font-size:clamp(17px,2.4vw,37px);font-weight:630;letter-spacing:-.04em}.channel-row:last-child{border:none}.channel-row span:last-child{font-size:16px;color:var(--acid)}
+.project-art.art-audience{background:#d9dfc0}.poster-audiences{width:90%;display:flex;flex-direction:column;align-items:start}.poster-audiences strong{font-weight:570;letter-spacing:-.1em;font-size:clamp(95px,16vw,250px);line-height:.9}.poster-audiences p{font-size:clamp(15px,2vw,28px);text-transform:uppercase;letter-spacing:.07em;margin-top:16px;font-weight:740}
+.project-art.art-campaigns{background:#d9e3e0;display:flex;flex-direction:column;align-items:start;padding:8%}.poster-campaigns{font-size:clamp(43px,6vw,108px);line-height:.91;font-weight:720;letter-spacing:-.095em}.poster-campaigns em{font:italic 400 1em Georgia,serif}.poster-campaigns-sub{margin-top:20px;border-top:1px solid #79857c;padding-top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:730}
+.project-index{position:absolute;left:17px;top:16px;font-size:10px;font-weight:800;letter-spacing:.12em;background:rgba(250,251,246,.94);padding:9px 11px;border-radius:30px}
+.project-arrow{position:absolute;right:15px;top:14px;width:41px;height:41px;border-radius:50%;background:var(--acid);display:grid;place-items:center;font:24px Arial;transition:transform .25s}.project-card:hover .project-arrow{transform:rotate(45deg)}
+.project-meta{padding:20px 3px 0}.project-meta .project-label{font-size:10px;letter-spacing:.11em;font-weight:760;color:var(--olive);text-transform:uppercase}
+.project-meta h3{font-size:clamp(23px,2.8vw,43px);line-height:1.17;letter-spacing:-.055em;font-weight:640;margin:8px 0 10px}
+.project-meta p{color:var(--soft-ink);line-height:1.7;font-size:clamp(13px,1.02vw,16px);max-width:650px}.project-link{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:810;letter-spacing:.1em;text-transform:uppercase;margin-top:16px;padding-bottom:5px;border-bottom:1px solid var(--ink)}.work-footnote{font-size:11px;color:var(--muted);margin-top:48px;line-height:1.65}
+/* expertise */
+.expertise-section{background:var(--paper)}.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.skill{padding:30px 27px 36px;min-height:250px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .25s}.skill:hover{background:#ecf0df}.skill .skill-n{display:block;font-size:11px;color:var(--olive);letter-spacing:.1em;font-weight:820;margin-bottom:40px}
+.skill h3{font-size:clamp(19px,1.7vw,28px);font-weight:660;letter-spacing:-.045em;margin-bottom:16px;line-height:1.28}.skill p{color:var(--soft-ink);font-size:13px;line-height:1.8}
+/* experience */
+.experience-section{background:var(--bg)}.timeline{border-top:1px solid var(--line)}.job{display:grid;grid-template-columns:25% 1fr;gap:28px;border-bottom:1px solid var(--line);padding-block:31px 37px}.job-date{font-size:11px;letter-spacing:.1em;font-weight:740;color:var(--olive)}.job-location{margin-top:10px;font-size:11px;letter-spacing:.05em;color:var(--muted)}.job h3{font-size:clamp(24px,2.5vw,37px);font-weight:660;letter-spacing:-.052em;line-height:1.25}.job-company{font-size:12px;text-transform:uppercase;letter-spacing:.11em;font-weight:740;margin-top:12px}.job p{font-size:clamp(14px,1.04vw,16px);line-height:1.9;max-width:850px;color:var(--soft-ink);margin-top:20px}
+/* education, books */
+.education-section{background:var(--paper)}.edu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}.edu-card{border-top:1px solid var(--ink);padding-top:24px}.edu-year{font-size:11px;color:var(--olive);font-weight:780;letter-spacing:.12em}.edu-card h3{font-size:clamp(27px,3vw,43px);letter-spacing:-.06em;font-weight:650;margin:28px 0 12px}.edu-card p{font-size:14px;color:var(--soft-ink);line-height:1.8}.edu-card .country{font-size:11px;letter-spacing:.1em;margin-top:19px;font-weight:700}
+.beyond-section{background:#e4e9d4;padding-block:clamp(80px,9vw,130px)}.books-list{display:grid;grid-template-columns:1fr 1fr;gap:35px}.book-item{border-top:1px solid #8b957a;padding-top:22px}.book-year{font-size:11px;letter-spacing:.12em;font-weight:790;color:#59634c}.book-item h3{font-size:clamp(26px,3vw,49px);letter-spacing:-.055em;line-height:1.27;font-weight:640;margin:18px 0 14px}.book-item p{font-size:14px;color:#58634e;line-height:1.65}
+/* contact */
+.closing{padding-block:clamp(100px,14vw,215px) 45px;background:var(--night);color:var(--paper)}.closing .kicker{color:var(--acid)}.closing h2{font-size:clamp(55px,8.4vw,143px);line-height:1.05;letter-spacing:-.075em;font-weight:570;margin:25px 0 32px}.closing h2 em{color:var(--acid)}.closing .desc{max-width:590px;color:#b4b9ad;font-size:clamp(15px,1.2vw,19px);line-height:1.7}.closing-links{display:flex;flex-wrap:wrap;gap:25px;margin:36px 0 115px}.closing-links a{border:1px solid #a0a79a;padding:15px 18px;display:inline-flex;align-items:center;gap:35px;min-width:210px;justify-content:space-between;font-size:13px;font-weight:740;transition:.25s}.closing-links a:hover{background:var(--acid);border-color:var(--acid);color:var(--night)}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid #5a6157;padding-top:23px;color:#bcc3b4;font-size:10px;letter-spacing:.1em}.footer-row a{font-weight:740}
+/* modal */
+.modal-backdrop,.zoom-backdrop{position:fixed;inset:0;background:rgba(13,17,14,.74);z-index:80;display:none;align-items:center;justify-content:center;padding:clamp(10px,3vw,32px)}.modal-backdrop.active,.zoom-backdrop.active{display:flex}
+.modal-shell{background:var(--paper);width:min(1040px,100%);max-height:min(92vh,970px);overflow-y:auto;position:relative;box-shadow:0 24px 100px #0005}.modal-top{position:sticky;top:0;z-index:2;background:var(--paper);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,4vw,50px)}.modal-top .kicker{color:var(--olive)}.close-modal,.close-zoom{border:0;background:var(--night);color:white;width:40px;height:40px;border-radius:50%;font-size:25px;font-weight:200;display:grid;place-items:center;line-height:1}.modal-inner{padding:clamp(22px,4vw,58px)}.modal-inner h3{font-size:clamp(38px,5vw,72px);letter-spacing:-.07em;line-height:1.1;font-weight:620;margin-bottom:22px}.modal-summary{color:var(--soft-ink);font-size:clamp(15px,1.35vw,19px);line-height:1.6;max-width:790px}.modal-fact{background:#e6edd7;display:inline-flex;padding:14px 17px;letter-spacing:.02em;font-size:13px;font-weight:770;margin:25px 0 38px}.modal-sections{display:grid;grid-template-columns:1fr 1fr;gap:26px 38px;margin-top:20px}.modal-sections article{border-top:1px solid var(--line);padding-top:18px}.modal-sections article h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}.modal-sections article p{font-size:14px;color:var(--soft-ink);line-height:1.8}
+.modal-gallery{margin-top:44px}.modal-gallery h4{font-size:12px;letter-spacing:.1em;margin-bottom:18px}.screens{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.screen-img{border:1px solid var(--line);padding:0;background:white;overflow:hidden}.screen-img img{height:250px;width:100%;object-fit:contain;background:#e8e7e0;transition:transform .25s}.screen-img:hover img{transform:scale(1.02)}.modal-gallery .caption,.modal-disclaimer{color:var(--muted);font-size:11px;line-height:1.65;margin-top:14px}.modal-placeholder{background:var(--night);color:var(--acid);padding:38px;font-size:clamp(25px,4vw,53px);font-weight:760;letter-spacing:-.06em;line-height:1.12;margin-top:35px}.modal-placeholder small{display:block;font-size:11px;letter-spacing:.11em;line-height:1.7;font-weight:580;margin-top:18px;color:#d1d8c8}
+.zoom-inner{max-width:min(1400px,95vw);max-height:94vh;position:relative;display:flex;align-items:center;justify-content:center}.zoom-inner img{max-width:100%;max-height:89vh;object-fit:contain;background:#f4f4f4}.close-zoom{position:absolute;right:-15px;top:-15px;z-index:2;background:var(--acid);color:var(--ink)}
+@media(max-width:980px){.header-inner{height:69px}.menu{gap:18px}.menu a{font-size:11px}.hero{min-height:auto}.hero-layout{grid-template-columns:minmax(0,1fr) minmax(260px,.72fr)}.hero h1{font-size:clamp(51px,7.9vw,85px)}.portrait-wrap{max-height:560px}.project-card.card-wide,.project-card.card-narrow{grid-column:span 6}.stat-grid{grid-template-columns:repeat(4,1fr)}.stat .stat-number{font-size:clamp(53px,7.2vw,94px)}.skill{padding:25px 19px;min-height:245px}}
+@media(max-width:700px){:root{--space:22px}.header-inner{height:67px}.wordmark{font-size:24px}.menu{display:none;position:absolute;top:67px;left:0;right:0;background:var(--paper);padding:20px 23px 28px;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line);box-shadow:0 20px 30px #0001}.menu.active{display:flex}.menu a{padding:12px 3px;font-size:15px;border-bottom:1px solid var(--line)}.menu-controls{margin-left:auto}.hamburger{display:flex}.lang-link{padding:8px 10px}.hero-layout{grid-template-columns:1fr;gap:50px;padding-block:58px 64px}.hero h1{font-size:clamp(50px,10.3vw,83px);margin-block:22px}.hero h1 em{white-space:normal}.hero-bio{font-size:15px}.portrait-wrap{margin-inline:auto;max-height:unset;width:min(80%,430px);aspect-ratio:4/4.8}.portrait-stamp{right:-20px;width:74px;height:74px;font-size:9px}.hero-bottom{padding-block:16px}.hero-bottom span{font-size:9px}.section{padding-block:82px}.section-intro{grid-template-columns:1fr;gap:12px;margin-bottom:42px}.section-intro .kicker{padding-top:0}.big-heading{font-size:clamp(45px,10vw,77px)}.numbers h2{font-size:clamp(40px,9vw,70px)}.stat-grid{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid #fff4}.stat:nth-child(2){border-right:none}.stat:nth-child(3),.stat:nth-child(4){border-bottom:none}.stat .stat-number{font-size:clamp(66px,13vw,100px)}.stat:first-child{padding-left:clamp(12px,2vw,30px)}.about-content{grid-template-columns:1fr;gap:45px}.about-pull{font-size:clamp(29px,7vw,44px)}.project-grid{grid-template-columns:1fr}.project-card.card-wide,.project-card.card-narrow,.project-card{grid-column:1 / -1}.project-art,.card-narrow .project-art{aspect-ratio:1.37}.project-meta h3{font-size:clamp(27px,6vw,38px)}.skills-grid{grid-template-columns:repeat(2,1fr)}.skill{min-height:225px;padding:21px 17px}.skill .skill-n{margin-bottom:28px}.skill h3{font-size:21px}.job{grid-template-columns:1fr;gap:16px}.edu-grid,.books-list,.modal-sections{grid-template-columns:1fr}.closing-links{margin-bottom:75px}.closing h2{font-size:clamp(52px,11vw,85px)}.modal-shell{max-height:95vh}.screens{grid-template-columns:1fr}.screen-img img{height:280px}}
+@media(max-width:430px){.hero h1{font-size:clamp(44px,11.1vw,61px)}html[lang="ko"] .hero h1{font-size:clamp(38px,8.6vw,51px)}.hero-cta{width:auto}.stat .stat-number{font-size:66px}.skills-grid{grid-template-columns:1fr}.skill{min-height:0;padding:22px}.skill .skill-n{margin-bottom:16px}.portrait-wrap{width:85%}.menu-controls .lang-flag{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fade-up{transition:none}.js .fade-up:not(.in-view){opacity:1;transform:none}.ticker-track{animation:none}.project-card img,.project-arrow,.button-solid{transition:none}}
+
+
+/* V5 - balanced editorial redesign */
+:root {--bg:#f3f1eb;--paper:#faf9f5;--acid:#dce9a8;--olive:#687a50;--night:#1d241f;--soft-ink:#40473e;--line:#cfd1c7}
+html{scroll-padding-top:88px}
+.section{padding-block:clamp(72px,8vw,112px)}
+.section-intro{grid-template-columns:minmax(130px,21%) minmax(0,1fr);gap:24px;margin-bottom:clamp(34px,4.5vw,60px);border-top:1px solid var(--line);padding-top:22px}
+.section-intro .kicker{padding-top:3px}
+.kicker,.eyebrow{font-size:clamp(12px,.92vw,14px);letter-spacing:.095em;line-height:1.6}
+.big-heading{font-size:clamp(36px,4.15vw,66px);line-height:1.12;letter-spacing:-.052em;font-weight:630;max-width:1030px}
+.section-intro .intro-right>p{font-size:clamp(16px,1.18vw,19px);line-height:1.7;max-width:740px;margin-top:16px}
+.section-intro .intro-right>p.work-instruction{font-size:14px;line-height:1.65;margin-top:8px;color:var(--olive)}
+.header-inner{gap:20px}
+.wordmark{font-size:clamp(23px,2vw,29px)}
+.menu{gap:0;align-items:center}
+.menu a{font-size:14px;letter-spacing:0;padding:0 15px;border-right:1px solid #bcc3b5;line-height:1.1;white-space:nowrap}
+.menu a:last-child{border-right:0}
+.lang-link{font-size:13px}
+.hero{min-height:unset}
+.hero-layout{grid-template-columns:minmax(0,1.15fr) minmax(260px,.72fr);gap:clamp(30px,5vw,88px);padding-block:clamp(68px,7.5vw,110px) 90px;align-items:center}
+.hero h1,html[lang="ko"] .hero h1{font-size:clamp(39px,3.62vw,63px);font-weight:660;letter-spacing:-.055em;line-height:1.23;margin:25px 0 28px;max-width:840px}
+.hero h1 em{white-space:normal}
+.hero-bio{font-size:clamp(15px,1.04vw,17px);line-height:1.93;max-width:770px}
+.hero-actions{margin-top:27px}
+.button-solid,.button-link{font-size:14px}
+.portrait-wrap{width:min(100%,455px);max-height:460px;aspect-ratio:1.06 / 1;justify-self:center;margin:0 18px 0 0;align-self:center;overflow:visible}
+.portrait-image{width:100%;height:100%;object-fit:cover;object-position:50% 34%;border-radius:0 95px 0 0;filter:saturate(.91) contrast(.98)}
+.portrait-wrap::before{left:-20px;top:-18px;right:18px;bottom:18px;border-color:#b6c3b1}
+.portrait-stamp{top:auto;right:-22px;bottom:-21px;width:76px;height:76px;font-size:10px;z-index:2}
+.portrait-label{left:-11px;bottom:17px;background:rgba(250,249,245,.96);padding:10px 13px;font-size:11px;max-width:85%}
+.hero-bottom span{font-size:12px;letter-spacing:.025em}
+.ticker-track span{font-size:13px}
+.numbers{padding-block:clamp(75px,7.5vw,115px)}
+.numbers h2{font-size:clamp(34px,4.2vw,65px);margin:20px 0 46px;letter-spacing:-.053em}
+.stat .stat-number{font-size:clamp(50px,6.5vw,98px)}
+.stat p{font-size:clamp(12px,1vw,15px);letter-spacing:.04em;line-height:1.52}
+.stats-note{font-size:12px}
+.numbers-insight{font-size:clamp(17px,1.6vw,23px);font-weight:550;margin-top:25px;color:#dde7ce;letter-spacing:-.025em}
+.about-section{background:var(--paper)}
+.about-content{grid-template-columns:minmax(220px,.93fr) minmax(0,1.07fr);gap:clamp(35px,6vw,88px)}
+.about-pull{font-size:clamp(25px,2.65vw,41px);line-height:1.47;letter-spacing:-.04em}
+.about-body p{font-size:clamp(16px,1.1vw,18px);line-height:1.95}
+.about-tags{margin-top:28px;gap:9px}
+.about-tags span{font-size:12px;letter-spacing:0;padding:9px 12px;line-height:1.4}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(37px,4vw,62px) clamp(20px,2.4vw,32px)}
+.project-card,.project-card.card-wide,.project-card.card-narrow{grid-column:auto;align-self:start;width:100%}
+.project-art,.card-narrow .project-art{aspect-ratio:1.48!important;min-height:0;overflow:hidden}
+.project-art img{max-width:none;width:100%;height:100%;object-fit:cover;object-position:center top}
+.project-art.art-hub img,.project-art.art-dashboard img{width:100%;height:100%;object-fit:contain;object-position:center;border:0}
+.project-art.art-hub{background:#ECEEEA;padding:6%}
+.project-art.art-hub img{width:100%;height:100%;object-fit:contain;object-position:center;border:0;box-shadow:none}
+.project-art.art-dashboard{padding:6%;background:#E7EBEC}
+.project-art.art-dashboard img{width:100%;height:100%;object-fit:contain;object-position:center;border:0}
+.project-art .mock-browser{height:74%;top:12%;width:87%;left:6%;border-radius:6px}
+.project-art .mock-browser img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.project-art .mock-phone{width:23%;height:92%;bottom:-16%;right:6%;border-width:5px}
+.project-art .mock-phone img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.project-meta .project-label{font-size:12px;letter-spacing:.045em}
+.project-meta h3{font-size:clamp(23px,2.25vw,33px);line-height:1.24;letter-spacing:-.04em}
+.project-meta p{font-size:clamp(15px,1.12vw,17px);line-height:1.68}
+.project-link{font-size:13px;letter-spacing:.05em}
+.project-art.art-channels{background:#222b28;gap:16px;padding:8% 7%}
+.channel-icons{width:100%;display:flex;justify-content:space-around;align-items:center;gap:10px}
+.channel-icon{width:30%;max-width:125px;aspect-ratio:1;background:#f3f5e7;border:1px solid #cdd8c5;border-radius:22%;display:flex;align-items:center;justify-content:center;color:#24362a}
+.channel-icon svg{width:52%;height:52%;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.channel-caption{width:100%;display:flex;justify-content:space-around;color:#f1f4ed;gap:10px;font-size:clamp(10px,1.06vw,14px);font-weight:700;letter-spacing:.05em;text-align:center}
+.channel-caption span{width:30%}
+.project-art.art-audience{background:#e1e5d4}
+.aep-lockup{display:flex;align-items:center;justify-content:center;gap:18px;padding:28px;max-width:100%}
+.aep-mark{width:90px;height:90px;background:#242a25;color:#e9f0d1;display:grid;place-items:center;border-radius:15px;font-size:32px;font-weight:750;letter-spacing:-.08em}
+.aep-name{font-size:clamp(17px,1.7vw,28px);font-weight:650;letter-spacing:-.035em;line-height:1.22;color:#252b24}
+.expertise-section{background:#1d2520;color:#f5f5ed}
+.expertise-section .section-intro{border-color:rgba(255,255,255,.24)}
+.expertise-section .kicker,.expertise-section .skill-n{color:#dce9a8}
+.expertise-section .skills-grid{border-color:rgba(255,255,255,.22)}
+.expertise-section .skill{border-color:rgba(255,255,255,.22);min-height:216px;padding:26px 28px 30px}
+.expertise-section .skill:hover{background:#2a352d}
+.expertise-section .skill h3{font-size:clamp(20px,1.65vw,26px);line-height:1.27}
+.expertise-section .skill p{color:#d0dbcf;font-size:clamp(14px,1.1vw,16px);line-height:1.83}
+.expertise-section .skill .skill-n{font-size:12px;margin-bottom:27px}
+.job{grid-template-columns:22% 1fr;padding-block:34px 40px}
+.job-date{font-size:14px;letter-spacing:.03em}
+.job-location{font-size:13px}
+.job h3{font-size:clamp(22px,2.05vw,33px);line-height:1.28;letter-spacing:-.038em}
+.job-company{font-size:14px;letter-spacing:.025em;text-transform:none}
+.job p{font-size:clamp(15px,1.07vw,17px);line-height:1.9;max-width:1020px}
+.edu-year{font-size:13px}.edu-card h3{font-size:clamp(23px,2.3vw,36px);margin:20px 0 12px}
+.edu-card p{font-size:clamp(15px,1.1vw,17px)}
+.edu-highlights{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.edu-highlights span{font-size:15px;color:var(--soft-ink);line-height:1.65}
+.edu-card .country{font-size:12px}
+.edu-publications{margin-top:48px;border-top:1px solid var(--line);padding-top:20px;display:flex;gap:28px;align-items:start}
+.edu-publications .kicker{color:var(--olive);min-width:180px}
+.edu-publications p{font-size:14px;line-height:1.8;color:var(--soft-ink)}
+.closing{padding-block:clamp(70px,9vw,125px) 32px}
+.closing .contact-lead{font-size:clamp(26px,3.4vw,50px);font-weight:540;line-height:1.25;letter-spacing:-.04em;margin-top:20px}
+.closing-links{margin:28px 0 75px}
+.closing-links a{font-size:16px}
+.footer-row{font-size:12px}
+.modal-inner h3{font-size:clamp(30px,3.7vw,53px)}
+.modal-summary{font-size:clamp(16px,1.25vw,19px)}
+.modal-sections article h4{font-size:14px}
+.modal-sections article p{font-size:15px}
+.modal-gallery h4{font-size:14px}
+.screen-img img{width:100%;height:300px;object-fit:contain;background:#eef0eb}
+.zoom-inner{max-width:96vw}
+.zoom-inner img{max-width:96vw;max-height:87vh;object-fit:contain}
+@media(max-width:1100px){.menu a{font-size:12px;padding:0 9px}.hero h1,html[lang="ko"] .hero h1{font-size:clamp(36px,3.7vw,53px)}}
+@media(max-width:980px){.hero-layout{grid-template-columns:minmax(0,1fr) minmax(270px,.85fr)}.portrait-wrap{max-height:420px}.header-inner{gap:12px}}
+@media(max-width:700px){
+ .menu{gap:0}.menu a{font-size:16px;border-right:0;border-bottom:1px solid var(--line);padding:15px 3px}
+ .hero-layout{grid-template-columns:1fr;gap:42px;padding-block:49px 58px}
+ .hero h1,html[lang="ko"] .hero h1{font-size:clamp(34px,7.7vw,49px);letter-spacing:-.048em;line-height:1.28}
+ .hero-bio{font-size:15px;line-height:1.83}
+ .portrait-wrap{width:min(91%,450px);max-height:340px;aspect-ratio:1.25;margin-left:auto;margin-right:auto}
+ .portrait-image{object-position:center 34%;border-radius:0 75px 0 0}
+ .portrait-stamp{width:65px;height:65px;font-size:9px;right:-16px}
+ .section{padding-block:70px}.section-intro{grid-template-columns:1fr;gap:9px}
+ .big-heading{font-size:clamp(32px,7.2vw,50px)}.numbers h2{font-size:clamp(33px,6.8vw,49px)}
+ .stat .stat-number{font-size:clamp(53px,10vw,79px)}.stat p{font-size:12px}
+ .about-content{grid-template-columns:1fr;gap:28px}.about-pull{font-size:clamp(26px,6.1vw,34px)}
+ .project-grid{grid-template-columns:1fr;row-gap:43px}.project-card,.project-card.card-wide,.project-card.card-narrow{grid-column:1 / -1}
+ .project-art,.card-narrow .project-art{aspect-ratio:1.48!important}
+ .project-meta h3{font-size:clamp(24px,5vw,30px)}
+ .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.expertise-section .skill{min-height:180px;padding:20px 16px 24px}.expertise-section .skill h3{font-size:19px}.expertise-section .skill p{font-size:14px}
+ .job{grid-template-columns:1fr;gap:12px}.job h3{font-size:25px}.job p{font-size:15px}
+ .edu-grid{grid-template-columns:1fr;gap:36px}.edu-publications{flex-direction:column;gap:12px}
+ .closing .contact-lead{font-size:30px}
+ .screens{grid-template-columns:1fr}.screen-img img{height:285px}
+}
+@media(max-width:430px){
+ .hero h1,html[lang="ko"] .hero h1{font-size:clamp(30px,7.7vw,39px)}
+ .portrait-wrap{width:90%;max-height:280px}
+ .skills-grid{grid-template-columns:1fr}.expertise-section .skill{min-height:0}
+ .lang-link{font-size:12px}
+}
+
+
+/* V6 - merged editorial introduction; fully upright typography */
+:root{--night:#1d241f}
+body,button,input,textarea{font-style:normal}
+em,i,.accent{font-style:normal!important;font-family:inherit!important}
+.hero h1 .accent,.numbers h2 .accent,.big-heading .accent{font-family:inherit!important;font-style:normal!important;font-weight:inherit;letter-spacing:inherit}
+.hero h1 .accent{position:relative;z-index:1;white-space:normal}
+.hero h1 .accent::after{content:"";height:.115em;background:var(--acid);position:absolute;left:0;right:0;bottom:.02em;z-index:-1}
+.numbers h2 .accent{color:var(--acid)}
+.big-heading .accent{color:var(--olive)}
+.hero{min-height:0}
+.hero-layout{grid-template-columns:minmax(0,1fr) minmax(240px,.38fr);align-items:start;gap:clamp(24px,4.2vw,76px);padding-block:clamp(66px,6.5vw,104px) clamp(76px,7vw,110px)}
+.hero h1,html[lang="ko"] .hero h1{font-size:clamp(36px,3.12vw,52px);font-weight:650;letter-spacing:-.052em;line-height:1.27;max-width:none;margin:24px 0 26px}
+.hero-line{display:block;white-space:nowrap}
+.hero-bio{max-width:800px;font-size:clamp(15px,1.1vw,17px);line-height:1.85;color:var(--soft-ink)}
+.hero-bio p{margin:0 0 13px}
+.hero-bio .hero-bio-lead{font-weight:580;color:var(--ink)}
+.hero-quote{font-weight:630;color:var(--ink);border-left:3px solid #a7b966;padding:4px 0 4px 15px;margin:22px 0 0;font-size:clamp(15px,1.13vw,18px);line-height:1.75}
+.hero-actions{margin-top:23px}
+.portrait-wrap{width:min(100%,340px);max-height:none;aspect-ratio:1.13;justify-self:end;align-self:start;margin:clamp(74px,7vw,108px) 14px 0 0}
+.portrait-image{width:100%;height:100%;object-fit:cover;object-position:50% 34%;border-radius:0 76px 0 0;filter:saturate(.94) contrast(.98)}
+.portrait-wrap::before{left:-16px;top:-16px;right:16px;bottom:16px}
+.portrait-stamp{width:64px;height:64px;right:-17px;bottom:-16px;font-size:9px}
+.portrait-label{font-size:10px;letter-spacing:.04em;left:-7px;bottom:14px;padding:8px 12px}
+.hero-bottom{display:none!important}
+.numbers{padding-block:clamp(66px,6.8vw,106px)}
+.numbers h2{font-size:clamp(32px,3.95vw,61px);line-height:1.15}
+.stat .stat-number{font-size:clamp(47px,6vw,88px)}
+.stats-note{font-size:13px}
+.section-intro .kicker{font-size:clamp(14px,1.04vw,16px)}
+.beyond-section{background:#e8ebdb;padding-block:clamp(72px,8vw,118px)}
+.beyond-heading{font-size:clamp(25px,2.4vw,38px);line-height:1.3;letter-spacing:-.035em;margin:0 0 35px;font-weight:600}
+.book-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,40px)}
+.book-card{display:grid;grid-template-columns:108px minmax(0,1fr);gap:24px;align-items:center;border-top:1px solid #aeb6a1;padding:26px 8px 20px 0;min-width:0}
+.book-symbol{background:#d1d9bd;aspect-ratio:.74;box-shadow:6px 7px 0 #aeb9a1;position:relative;display:flex;align-items:end;justify-content:center;padding-bottom:18px}
+.book-symbol::before{content:"";position:absolute;top:17px;left:16px;right:16px;border-top:1px solid #6d795a}
+.book-symbol .book-mark{font-size:35px;letter-spacing:-.06em;font-family:inherit;color:#42503b;font-weight:500}
+.book-year{font-size:13px;letter-spacing:.03em;font-weight:700;color:#5b6650}
+.book-card h3{font-size:clamp(21px,1.95vw,29px);line-height:1.35;letter-spacing:-.03em;font-weight:640;margin:10px 0}
+.book-card p{font-size:14px;line-height:1.6;color:#4a5946}
+.closing .section-intro{border-color:#596355}
+.closing .kicker{font-size:clamp(14px,1.04vw,16px)}
+/* avoid any visual style that suggests italicized headline */
+@media (max-width:1260px){.hero-line{white-space:normal}.hero h1,html[lang="ko"] .hero h1{font-size:clamp(34px,3.2vw,46px)}.portrait-wrap{width:min(100%,300px)}}
+@media (max-width:900px){.hero-layout{grid-template-columns:minmax(0,1fr) minmax(225px,.42fr);gap:25px}.portrait-wrap{margin-top:85px;width:min(100%,270px)}.hero h1,html[lang="ko"] .hero h1{font-size:clamp(31px,3.85vw,41px)}.book-card{grid-template-columns:90px minmax(0,1fr);gap:19px}}
+@media (max-width:700px){.hero-layout{grid-template-columns:1fr;gap:23px;padding-top:47px;padding-bottom:68px}.hero h1,html[lang="ko"] .hero h1{font-size:clamp(29px,6.7vw,41px);line-height:1.28;margin:19px 0 24px}.hero-line{white-space:normal}.hero-bio{font-size:15px;line-height:1.85}.hero-quote{font-size:16px}.portrait-wrap{width:min(75%,330px);aspect-ratio:1.24;max-height:none;margin:0 auto 22px;justify-self:center}.portrait-image{object-position:center 32%}.portrait-stamp{width:58px;height:58px}.hero-actions{gap:18px}.book-gallery{grid-template-columns:1fr}.book-card{grid-template-columns:86px minmax(0,1fr);gap:22px;padding-block:17px}.beyond-heading{font-size:27px}}
+@media (max-width:390px){.hero h1,html[lang="ko"] .hero h1{font-size:clamp(27px,7vw,32px)}.portrait-wrap{width:83%}}
+
+
+
+/* V7 refinements - wider portrait, neutral project details, clear editorial spacing */
+.hero-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.46fr)}
+.portrait-wrap{width:min(100%,412px);aspect-ratio:1.075;max-height:unset;margin-top:clamp(64px,6.7vw,98px);margin-right:0}
+.portrait-image{object-position:center 31%;border-radius:0 78px 0 0}
+.portrait-stamp,.portrait-label{display:none!important}
+.numbers-insight{display:none!important}
+.project-index{display:none!important}
+/* Keep the app UI straight, preserving its proportions inside the device frame. */
+.project-art .mock-phone{transform:none;right:6%;bottom:-8%;height:92%;width:auto;aspect-ratio:944/2048;border-radius:21px;border-width:5px}
+.project-art .mock-phone img{object-fit:contain;object-position:center top;width:100%;height:100%}
+/* Remove duplicated section rules and the last timeline divider. */
+.experience-section .section-intro{border-top:0;padding-top:0}
+.experience-section .timeline .job:last-child{border-bottom:0}
+.beyond-section .section-intro{border-top:0;padding-top:0}
+/* The writing section is typographic, without decorative cover icons. */
+.book-gallery{gap:clamp(20px,3vw,44px)}
+.book-card{display:block;padding:20px 4px 10px 0}
+.book-symbol{display:none!important}
+.book-card h3{font-size:clamp(20px,1.55vw,25px);line-height:1.43;margin:10px 0 8px}
+.book-card .book-year{font-size:13px}
+.book-card p{font-size:13px}
+/* Respect an image's original proportions in the popup and lightbox. */
+.screen-img img{object-fit:contain}
+.project-art .mock-browser img{object-fit:cover;object-position:top left}
+@media(max-width:1260px){.portrait-wrap{width:min(100%,378px)}}
+@media(max-width:900px){.hero-layout{grid-template-columns:minmax(0,1fr) minmax(240px,.46fr)}.portrait-wrap{width:min(100%,310px);margin-top:74px}}
+@media(max-width:700px){.hero-layout{grid-template-columns:1fr}.portrait-wrap{width:min(88%,420px);aspect-ratio:1.18;margin:0 auto 20px}.project-art .mock-phone{height:90%}}
+@media(max-width:390px){.portrait-wrap{width:90%}}
+
+.modal-fact[hidden]{display:none!important}
+
+/* V7.1: remove every unwanted horizontal rule in education and beyond. */
+.education-section .section-intro,
+.beyond-section .section-intro {
+  border-top: none !important;
+  border-bottom: none !important;
+  padding-top: 0 !important;
+}
+.education-section .edu-card,
+.beyond-section .book-card {
+  border-top: none !important;
+}
+.education-section .section-line,
+.beyond-section .section-line {
+  display: none !important;
+}
+
+
+/* V7.2 / requested clean section transitions and cards - scoped to Education and Beyond. */
+#education, #beyond, #education > .container, #beyond > .container,
+#education .section-intro, #beyond .section-intro,
+#education .edu-grid, #education .edu-card, #education .edu-publications,
+#beyond .book-gallery, #beyond .book-card, #beyond .book-item {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+#education .section-intro, #beyond .section-intro { padding-top: 0 !important; }
+#education .section-intro::before, #education .section-intro::after,
+#beyond .section-intro::before, #beyond .section-intro::after,
+#education .edu-card::before, #education .edu-card::after,
+#beyond .book-card::before, #beyond .book-card::after {
+  content: none !important; display: none !important;
+}
+/* Remove line after the last job, immediately before Education. */
+#experience .job:last-child { border-bottom:0 !important; }
+
+/* V8: self-contained editorial chapter experience. The rest of the layout is unchanged. */
+.chapters-section {overflow:hidden;position:relative;padding-block:clamp(78px,8vw,120px);background:#202620;color:#F7F6F0}
+.chapters-section .chapter-heading{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:36px}
+.chapters-section .chapter-heading h2{font-size:clamp(34px,4.6vw,67px);line-height:1.12;margin:17px 0 0;letter-spacing:-.055em}
+.chapters-section .chapter-heading .kicker{font-size:12px;letter-spacing:.14em}
+.chapter-tally{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;padding-bottom:4px}
+.chapter-tally>span{font-size:clamp(67px,8vw,113px);letter-spacing:-.105em;line-height:.88;font-weight:650;color:#E3F1AC}
+.chapter-tally .plus-mark{font-size:.57em;vertical-align:top;padding-left:5px}
+.chapter-tally small{font-size:12px;font-weight:700;letter-spacing:.12em;opacity:.8;margin-top:15px;text-transform:uppercase}
+.folio-chapters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative}
+.folio-chapter{font:inherit;cursor:pointer;appearance:none;text-align:left;color:#29392F;border:1px solid #B3C0AD;border-radius:5px;background:#E9EDE4;min-height:383px;padding:22px 23px 20px;display:flex;flex-direction:column;position:relative;isolation:isolate;overflow:hidden;transition:background .45s ease,border-color .45s ease,transform .5s cubic-bezier(.2,.8,.3,1),box-shadow .5s}
+.folio-chapter:nth-child(2){background:#E0E7DA}.folio-chapter:nth-child(3){background:#D5E0D7}
+.folio-chapter::before{content:'';position:absolute;left:-20%;right:-20%;top:53%;height:120%;border:1px solid #AEBCAE;border-radius:50% 40% 0 0;transform:translateY(20%) rotate(-6deg);opacity:.52;transition:transform .75s cubic-bezier(.2,.8,.3,1),opacity .5s;z-index:-1}
+.folio-chapter::after{content:'';position:absolute;width:92px;height:92px;right:32px;top:65px;border-radius:50%;background:radial-gradient(circle at 48% 48%,#DDEABB 0 34%,transparent 36%);border:1px solid rgba(63,91,75,.25);opacity:.75;transform:rotate(-20deg);transition:transform .8s,scale .8s}
+.folio-top,.folio-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;width:100%}
+.folio-top{font-size:12px;letter-spacing:.16em;font-weight:760;color:#5A6D5D;border-bottom:1px solid rgba(65,89,70,.2);padding-bottom:16px}
+.folio-leaf{font-size:18px;transition:transform .7s}
+.folio-glyph{position:absolute;right:22px;top:89px;font-size:clamp(90px,11vw,158px);line-height:1;letter-spacing:-.1em;font-weight:330;color:rgba(90,121,86,.13);transform:rotate(-9deg);transition:transform .65s ease}
+.folio-core{display:flex;flex:1;flex-direction:column;justify-content:end;gap:20px;padding-top:65px;position:relative;z-index:1}
+.folio-years{font-size:clamp(54px,7vw,96px);line-height:.9;letter-spacing:-.09em;font-weight:700;display:flex;align-items:start;gap:12px;color:#25392E}
+.folio-years small{font-size:12px;letter-spacing:.12em;font-weight:700;margin-top:11px}
+.folio-book-title{font-size:clamp(25px,2.6vw,38px);font-weight:650;letter-spacing:-.065em;line-height:1.13;min-height:88px}
+.folio-bottom{border-top:1px solid rgba(65,89,70,.2);padding-top:16px;align-items:flex-end;z-index:1;position:relative}
+.folio-bottom>span:first-child{font-size:12px;line-height:1.65;max-width:85%;color:#4F6454;font-weight:600}
+.folio-arrow{font-size:23px;transition:transform .35s}
+.folio-chapter:hover,.folio-chapter:focus-visible,.folio-chapter.active{background:#E4F0BE;border-color:#D6EF9B;transform:translateY(-7px);box-shadow:0 23px 43px rgba(0,0,0,.15);outline-offset:4px}
+.folio-chapter:hover::before,.folio-chapter:focus-visible::before,.folio-chapter.active::before{transform:translateY(5%) rotate(4deg);opacity:.9}
+.folio-chapter:hover::after,.folio-chapter:focus-visible::after,.folio-chapter.active::after{transform:rotate(35deg) scale(1.18)}
+.folio-chapter:hover .folio-glyph,.folio-chapter:focus-visible .folio-glyph,.folio-chapter.active .folio-glyph{transform:translate(-14px,-13px) rotate(4deg)}
+.folio-chapter:hover .folio-leaf,.folio-chapter:focus-visible .folio-leaf{transform:rotate(80deg)}
+.folio-chapter:hover .folio-arrow,.folio-chapter:focus-visible .folio-arrow{transform:translate(4px,-4px)}
+.chapters-caption{color:#ACB7AA;font-size:13px;margin-top:18px;letter-spacing:.004em}
+.chapter-rhythm{margin-top:54px;position:relative;padding:4px 0 6px}
+.rhythm-heading{display:none}
+
+.rhythm-wave{position:absolute;width:100%;height:128px;left:0;top:8px;color:#869885;pointer-events:none;z-index:0;opacity:.55}
+.rhythm-lane{width:100%;overflow:hidden;position:relative;margin-top:8px;padding:8px 0 4px;mask-image:linear-gradient(to right,transparent,black 7%,black 93%,transparent)}
+.rhythm-lane + .rhythm-lane{margin-top:8px}
+.rhythm-track{display:flex;width:max-content;animation:ink-flow 49s linear infinite;will-change:transform;gap:0;align-items:center}
+.rhythm-lane.reverse .rhythm-track{display:flex;width:max-content;animation:ink-flow 49s linear infinite;will-change:transform;gap:0;align-items:center}
+.rhythm-lane:hover .rhythm-track,.rhythm-lane:focus-within .rhythm-track{display:flex;width:max-content;animation:ink-flow 49s linear infinite;will-change:transform;gap:0;align-items:center}
+.rhythm-set{display:flex;align-items:center;gap:12px;flex:none;padding-right:12px}
+.rhythm-word{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:1px solid #5E695D;background:#232B24;color:#E9F0E4;border-radius:2px;padding:7px 11px;font-size:12px;letter-spacing:.01em;font-weight:540;box-shadow:none;transition:background .3s,border-color .3s,transform .3s}
+.rhythm-word i{width:5px;height:5px;border-radius:50%;background:#D8EBAA;flex:none}
+.rhythm-word:hover{transform:translateY(-2px);background:#2E3A30;border-color:#CFE39C}
+@keyframes ink-flow{to{transform:translateX(-50%)}}@keyframes ink-flow-reverse{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
+.weapons-row{display:grid;grid-template-columns:minmax(140px,.5fr) minmax(0,2fr);gap:24px;margin-top:42px;padding-top:24px;border-top:1px solid #556354;align-items:start}
+.weapons-kicker{display:none}
+.weapons-intro h3{font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:#F9F8F2}
+
+.weapons-intro p{display:none}
+.weapons-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.weapon{display:flex;flex-direction:column;gap:11px;align-items:center;text-align:center}
+.weapon-ico{width:100%;height:82px;display:flex;align-items:center;justify-content:center;color:#C5E3A9;border:1px solid #637162;background:#2C382E;border-radius:8px;transition:transform .35s,background .35s,color .35s}
+.weapon-ico svg{width:42px;height:42px}
+.weapon:hover .weapon-ico{transform:translateY(-5px);background:#D9EAAE;color:#2F4A35}
+.weapon-name{font-size:11px;font-weight:560;color:#C7D4C2;line-height:1.3}
+.illustration-label{position:absolute;left:14px;bottom:14px;font-size:9px;letter-spacing:.12em;font-weight:700;background:rgba(255,255,255,.88);padding:6px 8px;border:1px solid rgba(0,0,0,.08)}
+.illustration-clarifier{margin-top:13px;color:#7B8A80;font-size:12px;line-height:1.55}
+@media(max-width:1050px){.weapons-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.folio-chapter{min-height:350px}.folio-book-title{font-size:27px}}
+@media(max-width:740px){
+ .chapters-section{padding-block:72px}.chapters-section .chapter-heading{align-items:flex-start;gap:20px}
+ .chapter-tally>span{font-size:70px}.chapter-tally small{font-size:9px}
+ .folio-chapters{grid-template-columns:1fr;gap:13px}
+ .folio-chapter{min-height:245px;padding:19px 21px}
+ .folio-core{padding-top:32px;gap:9px;flex-direction:row;align-items:flex-end;justify-content:space-between}
+ .folio-years{font-size:76px;flex:none}.folio-book-title{font-size:26px;min-height:auto;text-align:right}
+ .folio-glyph{font-size:93px;top:45px}.folio-chapter::after{top:40px;right:27px;width:70px;height:70px}
+ .folio-bottom{margin-top:23px}.chapter-rhythm{margin-top:42px}
+ .weapons-row{grid-template-columns:1fr;margin-top:32px;gap:18px}.weapons-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .weapon-ico{height:72px}.weapon-name{font-size:11px}
+}
+@media(max-width:440px){.chapters-section .chapter-heading{gap:12px}.chapter-tally>span{font-size:58px}.chapters-section .chapter-heading h2{font-size:33px}.chapter-tally small{font-size:8px;text-align:right}.folio-book-title{font-size:22px}.folio-years{font-size:64px}.weapons-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.rhythm-word{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.rhythm-track,.rhythm-lane.reverse .rhythm-track{animation:none!important;transform:none!important}.folio-chapter,.folio-chapter::before,.folio-chapter::after,.folio-glyph,.folio-leaf,.weapon-ico{transition:none!important}}
+/* V8.2: exact requested line and arrow cleanup */
+#expertise .section-intro,#contact .section-intro{border-top:0!important;padding-top:0!important}
+.folio-bottom>span:first-child{max-width:100%}
+.folio-chapter{cursor:default}
+.folio-arrow{display:none!important}
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="progress-line"></div>
+<header class="site-header" id="top">
+<div class="container header-inner">
+<a aria-label="양은혜" class="wordmark" href="#top">양은혜<span>.</span></a>
+<nav aria-label="주 메뉴" class="menu" id="navMenu"><a href="#work">주요 프로젝트</a><a href="#expertise">전문 분야</a><a href="#experience">경력</a><a href="#education">학력</a><a href="#beyond">이외</a><a href="#contact">연락처</a></nav>
+<div class="menu-controls"><a aria-label="언어 전환" class="lang-link" href="index.html" lang="en">◐ <span>English</span> <span aria-hidden="true">↗</span></a><button aria-controls="navMenu" aria-expanded="false" aria-label="Open navigation" class="hamburger" id="menuToggle">☰</button></div>
+</div>
+</header>
+<main><section class="hero container" id="home"><div class="hero-layout">
+<div class="hero-copy fade-up"><p class="eyebrow">DIGITAL MARKETING · DIGITAL PLATFORMS · MARTECH</p><h1><span class="hero-line">캠페인 기획부터 플랫폼 구축,</span><span class="hero-line"><span class="accent">MarTech 운영</span>까지 아우르는</span><span class="hero-line">디지털 마케팅 전문가</span></h1><p class="hero-bio"><p class="hero-bio-lead">안녕하세요, 양은혜입니다. 광고대행사에서 소셜·유료 매체 캠페인 기획과 미디어 플래닝·바잉으로 경력을 시작해 디지털 플랫폼과 마케팅 테크놀로지까지 전문성을 확장해 왔습니다.</p><p class="hero-bio-paragraph">한국 시장에서는 메리어트 본보이 앱·웹사이트의 한국어 버전 런칭을 주도하고, 카카오·네이버 등 주요 디지털 접점을 운영했습니다. 현재는 APEC 지역의 고객 커뮤니케이션 채널, 데이터 기반 타기팅, 마케터용 업무 툴과 성과 대시보드를 도입하고 운영 체계를 구축하고 있습니다.</p><p class="hero-bio-paragraph">캠페인 실행 현장과 플랫폼 운영 조직을 모두 경험한 강점을 바탕으로, 여러 국가의 유관 부서와 협업해 사업 목표를 실행 가능한 로드맵으로 구체화하고 있습니다.</p></p><p class="hero-quote">전략을 제안하는 데 그치지 않고, 실제 출시와 실행, 안정적인 운영 정착까지 직접 이끕니다.</p><div class="hero-actions"><a class="button-solid" href="#experience">경력 보기 <span class="arrow">↗</span></a><a class="button-link" href="#work">주요 프로젝트 <span class="arrow">↗</span></a></div></div>
+<div class="portrait-wrap fade-up"><img alt="양은혜 professional portrait" class="portrait-image" fetchpriority="high" height="1249" src="assets/liz-portrait.webp" width="1000"/></div>
+</div></section><section aria-label="세 가지 분야로 쌓은 경력" class="numbers chapters-section" id="chapters">
+<div class="container">
+ <div class="chapter-heading fade-up"><div>
+ <h2>끊임없이 발전하고<br><span class="accent">넓혀가는 경력.</span></h2></div>
+ <div class="chapter-tally"><span>11<span class="plus-mark">+</span></span><small>총 마케팅 경력</small></div></div>
+ <div class="folio-chapters fade-up"><button class="folio-chapter" type="button" data-chapter="01" aria-label="Chapter 01 Digital Marketing Campaigns">
+     <span class="folio-top"><span>CHAPTER 01</span><span class="folio-leaf">✳</span></span>
+     <span class="folio-glyph" aria-hidden="true">01</span>
+     <span class="folio-core"><span class="folio-years">4<small>YEARS</small></span><span class="folio-book-title">Digital Marketing<br>Campaigns</span></span>
+     <span class="folio-bottom"><span>캠페인 기획 · 소셜 · 미디어 바잉</span></span>
+   </button><button class="folio-chapter" type="button" data-chapter="02" aria-label="Chapter 02 Digital Platforms">
+     <span class="folio-top"><span>CHAPTER 02</span><span class="folio-leaf">✳</span></span>
+     <span class="folio-glyph" aria-hidden="true">02</span>
+     <span class="folio-core"><span class="folio-years">5<small>YEARS</small></span><span class="folio-book-title">Digital<br>Platforms</span></span>
+     <span class="folio-bottom"><span>플랫폼 런칭 · 커머스 · 로컬 채널</span></span>
+   </button><button class="folio-chapter" type="button" data-chapter="03" aria-label="Chapter 03 MarTech & Customer Data">
+     <span class="folio-top"><span>CHAPTER 03</span><span class="folio-leaf">✳</span></span>
+     <span class="folio-glyph" aria-hidden="true">03</span>
+     <span class="folio-core"><span class="folio-years">3<small>YEARS</small></span><span class="folio-book-title">MarTech &amp;<br>Customer Data</span></span>
+     <span class="folio-bottom"><span>CRM · 개인화 · 신규 채널·툴 출시</span></span>
+   </button></div>
+ <p class="chapters-caption">분야별 경력은 일부 기간이 겹칩니다.</p>
+ <div class="chapter-rhythm">
+   
+   <svg class="rhythm-wave" viewBox="0 0 1200 230" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.1" opacity=".38"><path d="M-50 52 C60 0 132 105 240 52 S415 0 520 52 S698 104 807 52 S996 2 1100 52 S1265 103 1310 52"/><path d="M-50 61 C60 9 132 114 240 61 S415 9 520 61 S698 113 807 61 S996 11 1100 61 S1265 112 1310 61"/><path d="M-50 162 C70 108 143 214 251 162 S422 110 535 162 S716 213 829 162 S1004 109 1124 162 S1285 214 1330 162"/><path d="M-50 171 C70 117 143 223 251 171 S422 119 535 171 S716 222 829 171 S1004 118 1124 171 S1285 223 1330 171"/></g></svg>
+   <div class="rhythm-lane "><div class="rhythm-track"><div class="rhythm-set"><span class="rhythm-word"><i aria-hidden="true"></i>Campaign Planning</span><span class="rhythm-word"><i aria-hidden="true"></i>Media Buying</span><span class="rhythm-word"><i aria-hidden="true"></i>Social</span><span class="rhythm-word"><i aria-hidden="true"></i>Digital Platforms</span><span class="rhythm-word"><i aria-hidden="true"></i>Commerce</span><span class="rhythm-word"><i aria-hidden="true"></i>CRM</span><span class="rhythm-word"><i aria-hidden="true"></i>Lifecycle</span><span class="rhythm-word"><i aria-hidden="true"></i>Personalization</span><span class="rhythm-word"><i aria-hidden="true"></i>Snowflake</span></div><div class="rhythm-set" aria-hidden="true"><span class="rhythm-word"><i aria-hidden="true"></i>Campaign Planning</span><span class="rhythm-word"><i aria-hidden="true"></i>Media Buying</span><span class="rhythm-word"><i aria-hidden="true"></i>Social</span><span class="rhythm-word"><i aria-hidden="true"></i>Digital Platforms</span><span class="rhythm-word"><i aria-hidden="true"></i>Commerce</span><span class="rhythm-word"><i aria-hidden="true"></i>CRM</span><span class="rhythm-word"><i aria-hidden="true"></i>Lifecycle</span><span class="rhythm-word"><i aria-hidden="true"></i>Personalization</span><span class="rhythm-word"><i aria-hidden="true"></i>Snowflake</span></div></div></div><div class="rhythm-lane reverse"><div class="rhythm-track"><div class="rhythm-set"><span class="rhythm-word"><i aria-hidden="true"></i>Dashboard</span><span class="rhythm-word"><i aria-hidden="true"></i>Workflow Automation</span><span class="rhythm-word"><i aria-hidden="true"></i>Channel Launch</span><span class="rhythm-word"><i aria-hidden="true"></i>App Push</span><span class="rhythm-word"><i aria-hidden="true"></i>SMS</span><span class="rhythm-word"><i aria-hidden="true"></i>WhatsApp</span><span class="rhythm-word"><i aria-hidden="true"></i>Kakao</span><span class="rhythm-word"><i aria-hidden="true"></i>Naver</span></div><div class="rhythm-set" aria-hidden="true"><span class="rhythm-word"><i aria-hidden="true"></i>Dashboard</span><span class="rhythm-word"><i aria-hidden="true"></i>Workflow Automation</span><span class="rhythm-word"><i aria-hidden="true"></i>Channel Launch</span><span class="rhythm-word"><i aria-hidden="true"></i>App Push</span><span class="rhythm-word"><i aria-hidden="true"></i>SMS</span><span class="rhythm-word"><i aria-hidden="true"></i>WhatsApp</span><span class="rhythm-word"><i aria-hidden="true"></i>Kakao</span><span class="rhythm-word"><i aria-hidden="true"></i>Naver</span></div></div></div>
+ </div>
+ <div class="weapons-row"><div class="weapons-intro"><h3>주요 도구</h3></div><div class="weapons-grid"><div class="weapon" title="Adobe Campaign"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 38 L22 14 L32 38 M16 30 H29"/><path d="M38 16 L47 16 L47 36 L38 36"/></svg></span><span class="weapon-name">Adobe Campaign</span></div><div class="weapon" title="Adobe Experience Platform"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 39 L27 13 L41 39 Z"/><path d="M23 31 L31 31"/><circle cx="44" cy="17" r="4"/></svg></span><span class="weapon-name">Adobe Experience Platform</span></div><div class="weapon" title="Adobe Target"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="17"/><circle cx="28" cy="28" r="9"/><circle cx="28" cy="28" r="2" fill="currentColor" stroke="none"/></svg></span><span class="weapon-name">Adobe Target</span></div><div class="weapon" title="Adobe Analytics"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 38 V30 L20 24 L29 31 L39 17 L46 23"/><path d="M11 43 H46"/><circle cx="39" cy="17" r="2" fill="currentColor" stroke="none"/></svg></span><span class="weapon-name">Adobe Analytics</span></div><div class="weapon" title="Snowflake"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M28 9 V47 M9 28 H47 M14.5 14.5 L41.5 41.5 M41.5 14.5 L14.5 41.5"/><path d="M21 15 L28 9 L35 15 M21 41 L28 47 L35 41"/></svg></span><span class="weapon-name">Snowflake</span></div><div class="weapon" title="Excel"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="11" width="36" height="34" rx="3"/><path d="M21 11 V45 M21 24 H46 M21 34 H46"/><path d="M13 25 L18 32 M18 25 L13 32"/></svg></span><span class="weapon-name">Excel</span></div><div class="weapon" title="PowerPoint"><span class="weapon-ico"><svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="27" r="17"/><path d="M30 10 V27 H47"/><path d="M18 40 V14"/></svg></span><span class="weapon-name">PowerPoint</span></div></div></div>
+</div>
+</section><section class="section work-section" id="work"><div class="container"><div class="section-intro work-head fade-up"><div class="kicker">01 / 주요 프로젝트</div><div class="intro-right"><h2 class="big-heading">기획부터 <span class="accent">런칭까지.</span></h2><p>한국어 디지털 플랫폼, APEC 신규 커뮤니케이션 채널, 마케팅 도구와 데이터 기반 대시보드까지.</p><p class="work-instruction">* 프로젝트를 선택하면 담당 역할과 주요 화면을 확인할 수 있습니다.</p></div></div><div class="project-grid"><button aria-label="프로젝트 자세히 보기 - SubHub" class="project-card fade-up" data-project="hub" type="button"><div class="project-art art-hub"><img alt="Submission Hub submission editor" loading="lazy" src="assets/subhub-illustration.webp"/><span aria-hidden="true" class="project-arrow">↗</span></div><div class="project-meta"><span class="project-label">Marriott International · APEC · 2026</span><h3>SubHub</h3><p>캠페인 소재 접수부터 미리보기, 수정·승인까지 이어지는 업무 환경 구축</p><span class="project-link">프로젝트 자세히 보기 <span class="arrow">↗</span></span></div></button><button aria-label="프로젝트 자세히 보기 - 채널 대시보드" class="project-card fade-up" data-project="dashboard" type="button"><div class="project-art art-dashboard"><img alt="채널 대시보드 일러스트" loading="lazy" src="assets/channel-dashboard-illustration.webp"/><span aria-hidden="true" class="project-arrow">↗</span></div><div class="project-meta"><span class="project-label">Marriott International · APEC · 2026</span><h3>채널 대시보드</h3><p>이메일·앱 푸시·SMS·WhatsApp 인게이지먼트와 고객 행동을 함께 확인할 수 있는 대시보드 출시</p><span class="project-link">프로젝트 자세히 보기 <span class="arrow">↗</span></span></div></button><button aria-label="프로젝트 자세히 보기 - 앱 푸시·SMS·WhatsApp 신규 런칭" class="project-card fade-up" data-project="channels" type="button"><div class="project-art art-channels"><div aria-hidden="true" class="channel-icons">
+<div class="channel-icon" title="App Push"><svg viewbox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg></div>
+<div class="channel-icon" title="SMS"><svg viewbox="0 0 24 24"><path d="M4 4h16v13H8l-4 4V4z"></path><path d="M8 9h8M8 13h5"></path></svg></div>
+<div class="channel-icon" title="WhatsApp"><svg viewbox="0 0 24 24"><path d="M4 19l1-4a8 8 0 1 1 4 4l-5 1z"></path><path d="M9 8c1 4 3 6 7 7"></path><path d="M10 8l-1 2M16 14l-1 2"></path></svg></div>
+</div><div class="channel-caption"><span>APP PUSH</span><span>SMS</span><span>WHATSAPP</span></div><span aria-hidden="true" class="project-arrow">↗</span></div><div class="project-meta"><span class="project-label">Marriott International · APEC · 2023-현재</span><h3>앱 푸시·SMS·WhatsApp 신규 런칭</h3><p>APEC 지역에서 앱 푸시, SMS, WhatsApp을 도입하고 국가별 운영 절차를 마련</p><span class="project-link">프로젝트 자세히 보기 <span class="arrow">↗</span></span></div></button><button aria-label="프로젝트 자세히 보기 - 오디언스를 통한 타게팅" class="project-card fade-up" data-project="audience" type="button"><div class="project-art art-audience"><div aria-label="Adobe Experience Platform" class="aep-lockup"><div aria-hidden="true" class="aep-mark">AEP</div><div class="aep-name">Adobe<br/>Experience<br/>Platform</div></div><span aria-hidden="true" class="project-arrow">↗</span></div><div class="project-meta"><span class="project-label">Marriott International · APEC · 2023-현재</span><h3>오디언스를 통한 타게팅</h3><p>150개 이상의 세분화된 오디언스를 만들어 고객 특성에 맞는 메시지를 전달</p><span class="project-link">프로젝트 자세히 보기 <span class="arrow">↗</span></span></div></button><button aria-label="프로젝트 자세히 보기 - 메리어트 본보이 한국어 앱·웹사이트" class="project-card fade-up" data-project="bonvoy" type="button"><div class="project-art art-bonvoy"><div class="mock-browser"><img alt="Korean Marriott Bonvoy website" loading="lazy" src="assets/bonvoy-website.webp"/></div><div class="mock-phone"><img alt="Korean Marriott Bonvoy app" height="2048" loading="lazy" src="assets/bonvoy-app-hires.webp" width="944"/></div><span aria-hidden="true" class="project-arrow">↗</span></div><div class="project-meta"><span class="project-label">Marriott International · 한국 · 2018-2023</span><h3>메리어트 본보이 한국어 앱·웹사이트</h3><p>한국 고객을 위한 메리어트 앱과 웹사이트의 한국어 버전 런칭</p><span class="project-link">프로젝트 자세히 보기 <span class="arrow">↗</span></span></div></button></div></div></section><section class="section expertise-section" id="expertise"><div class="container"><div class="section-intro fade-up"><div class="kicker">02 / 전문 분야</div></div><div class="skills-grid"><article class="skill fade-up"><span class="skill-n">01 / 09</span><h3>디지털 캠페인 기획</h3><p>온·오프라인 통합 캠페인 · 캠페인 기획·실행 · 소셜 콘텐츠 · 크리에이티브 제작 및 대행사 협업</p></article><article class="skill fade-up"><span class="skill-n">02 / 09</span><h3>페이드·소셜 광고</h3><p>미디어 플래닝 · 바잉 · 프로그래매틱 광고 · 성과 최적화</p></article><article class="skill fade-up"><span class="skill-n">03 / 09</span><h3>디지털 플랫폼·커머스</h3><p>메리어트 본보이 한국어 앱·웹사이트 출시·운영 · 자사 F&amp;B 사이트 관리 · 카카오·네이버 채널 관리</p></article><article class="skill fade-up"><span class="skill-n">04 / 09</span><h3>CRM·라이프 사이클</h3><p>첫 100일 사이클 마케팅 · 리타케팅 · 에버그린 캠페인</p></article><article class="skill fade-up"><span class="skill-n">05 / 09</span><h3>커뮤니케이션 채널 출시·운영</h3><p>APEC 앱 푸시·SMS·WhatsApp 런칭 및 운영 · 한국 카카오 채널 및 네이버 블로그 런칭·운영</p></article><article class="skill fade-up"><span class="skill-n">06 / 09</span><h3>마케팅 테크놀로지</h3><p>Adobe Campaign v7/v8 · Web UI · Adobe Experience Platform · Adobe Target</p></article><article class="skill fade-up"><span class="skill-n">07 / 09</span><h3>데이터 분석·성과 측정</h3><p>Adobe Analytics · Snowflake(기초 SQL 작성) · 채널 성과 대시보드</p></article><article class="skill fade-up"><span class="skill-n">08 / 09</span><h3>플랫폼·업무 툴 출시</h3><p>Submission Hub · 채널 성과 대시보드 · 캠페인 시스템 전환 · 업무 절차 자동화</p></article><article class="skill fade-up"><span class="skill-n">09 / 09</span><h3>시장 전략·조직 협업</h3><p>한국 시장 디지털 전략 · APEC 국가별 실행 조율 · 멤버십·파트너십 · 글로벌·현지 조직 협업 · 대행사 관리</p></article></div></div></section><section class="section experience-section" id="experience"><div class="container"><div class="section-intro fade-up"><div class="kicker">03 / 경력</div></div><div class="timeline"><article class="job fade-up"><div><div class="job-date">2023 - 현재</div><div class="job-location">싱가포르</div></div><div><h3>Senior Manager of Marketing Technology</h3><div class="job-company">Marriott International · APEC</div><p>APEC 지역을 총괄하며 오디언스 액티베이션, 이메일, 앱 푸시, SMS, WhatsApp, 라이프사이클 마케팅 등 마테크(MarTech) 전략을 주도하고 있습니다. Adobe Experience Platform(AEP)과 Adobe Campaign을 연계하여 행동·예약·멤버십 데이터 기반의 150개 이상 세그먼트와 개인화 타기팅을 구현했습니다. 특히 이메일 발송량을 15% 이상 감축하면서도 안정적인 인게이지먼트를 유지했으며, APEC 전역에 앱 푸시를 신규 런칭하고 셀프서비스 인프라를 구축했습니다. Privacy, Legal 등 유관 부서와 협력하여 수신 동의 및 연락 가능 여부 관련 정책을 관리하며 채널 확장을 이끌었습니다. 아울러 Adobe Campaign v7에서 v8/Web UI로의 전환을 주도하고, 마케터용 자동화 툴과 Snowflake 기반 통합 성과 대시보드를 구축해 지역 운영 효율을 높였습니다.</p></div></article><article class="job fade-up"><div><div class="job-date">2018 - 2023</div><div class="job-location">서울</div></div><div><h3>Senior Manager of Digital Platform</h3><div class="job-company">Marriott International · 한국</div><p>한국 시장 내 Marriott.com, Marriott Bonvoy 앱, 카카오·네이버 등 주요 디지털 접점의 플랫폼 및 커머스 전략을 총괄 운영했습니다. 홈페이지 메인 배치부터 호텔 콘텐츠, 프로모션 스토어프론트까지 웹·앱 전반의 머천다이징을 담당하며 Adobe Target 기반 테스트와 최적화를 이끌었습니다. 객실, 다이닝, 웨딩 등 비즈니스 목표에 맞춰 네이버 브랜드 검색, 퍼포먼스 마케팅, 시즌 캠페인을 기획하고 대행사와 미디어 플래닝을 조율했습니다. 카카오·네이버를 아우르는 로컬 디지털 채널에서 멤버십 가입, 포인트 적립·사용, 고객 커뮤니케이션을 연결하여 고객의 탐색 경험부터 예약까지의 흐름을 개선했습니다. Adobe Analytics 기반 성과 분석, A/B 테스트, 예산 및 유관 부서 관리를 통해 디지털 채널의 비즈니스 성장을 주도했습니다.</p></div></article><article class="job fade-up"><div><div class="job-date">2017 - 2018</div><div class="job-location">서울</div></div><div><h3>Assistant Manager of Global Digital Marketing Team</h3><div class="job-company">CREATIP</div><p>글로벌 디지털 마케팅 에이전시에서 신규 비즈니스 개발을 지원하고 글로벌 고객사 대상 제안 및 피치 업무를 이끌었습니다. 전략 수립, 브랜딩, 랜딩 페이지 기획, 크로스채널 집행까지 이어지는 디지털 캠페인을 수행했습니다. 유료 매체, 검색, 소셜 플랫폼 전반의 미디어 플래닝·바잉과 퍼포먼스 최적화를 담당했으며, 해외 시장에서 캠페인이 원활하게 운영되도록 미디어 플랫폼 및 외부 파트너사와 긴밀히 협력했습니다.</p></div></article><article class="job fade-up"><div><div class="job-date">2016 - 2017</div><div class="job-location">서울</div></div><div><h3>Assistant Manager of Digital Marketing</h3><div class="job-company">PurpleFriends!</div><p>종합 디지털 마케팅 에이전시에서 소셜 미디어 전략, 오디언스 타기팅, 미디어 플래닝을 포함한 통합 디지털 캠페인을 담당했습니다. 내부 광고 앱 운영을 총괄하고 고객사와의 커뮤니케이션을 조율하며 정기적인 성과 리포팅을 수행했습니다. 전략적인 콘텐츠 기획과 SEO 최적화를 통해 오가닉 트래픽 유입과 검색 성과를 개선했습니다.</p></div></article><article class="job fade-up"><div><div class="job-date">2014</div><div class="job-location">서울</div></div><div><h3>Intern of Project Planning</h3><div class="job-company">Good Neighbors</div><p>프로젝트 기획 인턴으로 해외 파견 봉사자들의 준비 및 현장 활동을 지원했습니다. 국제 구호·개발 NGO 환경에서 실무 행정과 커뮤니케이션의 기초를 쌓았습니다.</p></div></article></div></div></section><section class="section education-section" id="education"><div class="container"><div class="section-intro fade-up"><div class="kicker">04 / 학력</div></div><div class="edu-grid"><article class="edu-card fade-up"><div class="edu-year">2008 - 2014</div><h3>조선대학교</h3><div class="edu-highlights"><span>섬유·패션디자인 전공</span><span>영어 복수전공 · 스페인어 부전공</span><span>수석 졸업 · GPA 4.24 / 4.5</span></div><p class="country">대한민국</p></article><article class="edu-card fade-up"><div class="edu-year">2012 - 2013</div><h3>Murray State University</h3><div class="edu-highlights"><span>교환학생 프로그램</span></div><p class="country">미국</p></article></div></div></section><section class="section beyond-section" id="beyond"><div class="container"><div class="section-intro fade-up"><div class="kicker">05 / 이외</div></div><h2 class="beyond-heading fade-up">일과 함께 이어온 글쓰기</h2><div class="book-gallery"><article class="book-card fade-up"><div class="book-info"><div class="book-year">2021</div><h3>날씨는 무척이나 좋았습니다</h3><p>시집 출간</p></div></article><article class="book-card fade-up"><div class="book-info"><div class="book-year">2024</div><h3>그대의 우주가 순간의 빛일지라도</h3><p>시집 출간</p></div></article></div></div></section><section class="closing" id="contact"><div class="container"><div class="section-intro fade-up"><div class="kicker">06 / 연락처</div></div><div class="closing-links fade-up"><a href="mailto:Precious.yeh@gmail.com">이메일 보내기 <span class="arrow">↗</span></a><a href="https://www.linkedin.com/in/lizzzyang" rel="noopener noreferrer" target="_blank">LinkedIn 연결 <span class="arrow">↗</span></a></div><div class="footer-row"><span>© 2026 양은혜 · Singapore</span><a href="#top">맨 위로 ↑</a></div></div></section></main>
+<div aria-hidden="true" class="modal-backdrop" id="projectBackdrop"><div aria-labelledby="modalTitle" aria-modal="true" class="modal-shell" role="dialog"><div class="modal-top"><span class="kicker">주요 프로젝트 / 상세</span><button aria-label="프로젝트 닫기" class="close-modal" id="closeModal" type="button">×</button></div><div class="modal-inner"><h3 id="modalTitle"></h3><p class="modal-summary" id="modalSummary"></p><div class="modal-fact" id="modalFact"></div><div class="modal-sections" id="modalSections"></div><div class="modal-gallery" id="modalGallery"></div></div></div></div>
+<div aria-hidden="true" class="zoom-backdrop" id="zoomBackdrop"><div class="zoom-inner"><button aria-label="확대 이미지 닫기" class="close-zoom" id="closeZoom" type="button">×</button><img alt="" id="zoomImage" src=""/></div></div>
+<script>
+const CASES = {"hub":{"title":"SubHub","summary":"캠페인 소재 접수부터 미리보기, 수정·승인까지 이어지는 업무 환경 구축","fact":"소재 접수 속도 30% 개선","detail":[["프로젝트 과제","APEC 각국 마케터가 캠페인 소재를 제출하고 수정·검수하는 과정을 한곳에서 관리할 수 있도록 운영 환경을 개선했습니다."],["담당 역할","SubHub(Submission Hub) 도입과 런칭을 이끌고, 소재 접수부터 미리보기·수정·승인까지 연결되는 실무 워크플로우를 정립했습니다."],["주요 성과","소재 접수 속도를 30% 단축하고 마케터가 실제로 활용할 수 있는 운영 프로세스로 정착시켰습니다."]],"images":["assets/subhub-illustration.webp"]},"bonvoy":{"title":"메리어트 본보이 한국어 앱·웹사이트","summary":"한국 고객을 위한 메리어트 앱과 웹사이트의 한국어 버전 런칭","fact":"한국어 앱·웹사이트 런칭","detail":[["프로젝트 배경","한국 고객에게 친숙한 디지털 경험을 제공하기 위해 글로벌 앱과 웹사이트의 현지화를 추진했습니다."],["담당 역할","메리어트 본보이 앱·웹사이트의 한국어 버전 런칭을 주도하고 글로벌·국내 관련 팀과 현지 콘텐츠 및 서비스 운영을 조율했습니다."],["운영 범위","출시 이후 웹·앱 머천다이징, 호텔 콘텐츠, 프로모션, 카카오·네이버 고객 접점을 운영했습니다."]],"images":["assets/bonvoy-website.webp","assets/bonvoy-app-hires.webp"]},"channels":{"title":"앱 푸시·SMS·WhatsApp 신규 런칭","summary":"APEC 지역에서 앱 푸시, SMS, WhatsApp을 도입하고 국가별 운영 절차를 마련","fact":"","detail":[["프로젝트 배경","국가별 고객 연락 동의 요건과 채널 환경을 고려해 신규 아웃바운드 커뮤니케이션 채널을 도입했습니다."],["담당 역할","앱 푸시·SMS·WhatsApp의 APEC 런칭과 시장별 캠페인 접수·타기팅·검수·발송 운영 체계 구축을 이끌었습니다."],["운영 효율 개선","앱 푸시 운영 단계를 28단계에서 17단계로 줄이고, 캠페인 리드타임을 5주에서 3주로 단축했습니다."]],"images":[]},"dashboard":{"title":"채널 대시보드","summary":"이메일·앱 푸시·SMS·WhatsApp 인게이지먼트와 고객 행동을 함께 확인할 수 있는 대시보드 출시","fact":"채널 성과와 고객 행동 분석","detail":[["프로젝트 배경","메시지 오픈·클릭 같은 채널 반응을 넘어 고객의 예약 및 행동 데이터를 함께 볼 수 있는 분석 환경이 필요했습니다."],["담당 역할","이메일과 앱 푸시를 비롯한 아웃바운드 채널의 인게이지먼트와 고객 행동을 연계한 대시보드 도입을 이끌었습니다."]],"images":["assets/channel-dashboard-illustration.webp"]},"audience":{"title":"오디언스를 통한 타게팅","summary":"150개 이상의 세분화된 오디언스를 만들어 고객 특성에 맞는 메시지를 전달","fact":"","detail":[["프로젝트 과제","가입 상태, 행동, 예약 패턴, 멤버십 특성 등에 따라 커뮤니케이션을 보다 정교하게 개인화하는 것이 중요했습니다."],["담당 역할","Adobe Experience Platform 기반으로 150개 이상의 오디언스를 구축·활용하고 Adobe Campaign에서 세그먼트별 타기팅을 실행했습니다."],["적용 범위","첫 100일 멤버 여정, 리타케팅, 멤버 전용 혜택, 에버그린 캠페인 등 고객 라이프사이클 전반에 활용했습니다."]],"images":[]}};
+const STRINGS = {"modal_screens": "프로젝트 화면", "modal_magnify": "이미지를 클릭하면 원본 비율로 확대됩니다.", "modal_note": "", "modal_img_alt": "프로젝트 화면을 확대해서 보기", "preview_disclaimer": "이미지 대신 프로젝트 내용을 소개합니다."};
+const backdrop=document.getElementById('projectBackdrop'), zoom=document.getElementById('zoomBackdrop');
+const $=id=>document.getElementById(id);
+let lastFocus=null;
+function setOpenState(open){document.body.classList.toggle('no-scroll',open)}
+function openProject(key){
+ const p=CASES[key]; if(!p)return; lastFocus=document.activeElement;
+ $('modalTitle').textContent=p.title;$('modalSummary').textContent=p.summary;$('modalFact').textContent=p.fact || ''; $('modalFact').hidden=!p.fact;
+ const details=$('modalSections');details.replaceChildren();
+ p.detail.forEach(([heading,body])=>{const a=document.createElement('article'),h=document.createElement('h4'),d=document.createElement('p');h.textContent=heading;d.textContent=body;a.append(h,d);details.append(a)});
+ const g=$('modalGallery');g.replaceChildren();
+ if(p.images.length){const title=document.createElement('h4');title.textContent=STRINGS.modal_screens;g.append(title);const wrap=document.createElement('div');wrap.className='screens';p.images.forEach(src=>{const b=document.createElement('button');b.type='button';b.className='screen-img';b.setAttribute('aria-label',STRINGS.modal_magnify);const img=document.createElement('img');img.src=src;img.alt=STRINGS.modal_img_alt;img.loading='lazy';b.append(img);b.addEventListener('click',()=>openZoom(src));wrap.append(b)});g.append(wrap);let caption=document.createElement('p');caption.className='caption';caption.textContent=STRINGS.modal_magnify;g.append(caption);if(key==='hub'||key==='dashboard'){let notice=document.createElement('p');notice.className='illustration-clarifier';notice.textContent='포트폴리오용 일러스트 - 실제 시스템 스크린샷 아님';g.append(notice)}if(STRINGS.modal_note){let note=document.createElement('p');note.className='modal-disclaimer';note.textContent=STRINGS.modal_note;g.append(note)}}
+ else{g.replaceChildren()}
+ backdrop.classList.add('active');backdrop.setAttribute('aria-hidden','false');setOpenState(true);$('closeModal').focus();
+}
+function closeProject(){backdrop.classList.remove('active');backdrop.setAttribute('aria-hidden','true');if(!zoom.classList.contains('active'))setOpenState(false);if(lastFocus)lastFocus.focus()}
+function openZoom(src){$('zoomImage').src=src;zoom.classList.add('active');zoom.setAttribute('aria-hidden','false');$('closeZoom').focus()}
+function closeZoom(){zoom.classList.remove('active');zoom.setAttribute('aria-hidden','true');$('zoomImage').removeAttribute('src');if(!backdrop.classList.contains('active'))setOpenState(false);$('closeModal').focus()}
+document.querySelectorAll('[data-project]').forEach(el=>el.addEventListener('click',()=>openProject(el.dataset.project)));
+$('closeModal').addEventListener('click',closeProject);$('closeZoom').addEventListener('click',closeZoom);
+backdrop.addEventListener('mousedown',e=>{if(e.target===backdrop)closeProject()});zoom.addEventListener('mousedown',e=>{if(e.target===zoom)closeZoom()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(zoom.classList.contains('active'))closeZoom();else if(backdrop.classList.contains('active'))closeProject();} if(e.key==='Tab'&&backdrop.classList.contains('active')&&!zoom.classList.contains('active')){const f=[...backdrop.querySelectorAll('button,a[href]')].filter(el=>el.offsetParent!==null);if(f.length){if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}}}});
+const menu=$('navMenu'), toggle=$('menuToggle');toggle.addEventListener('click',()=>{let active=menu.classList.toggle('active');toggle.setAttribute('aria-expanded',String(active))});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('active');toggle.setAttribute('aria-expanded','false')}));
+const scrollUpdate=()=>{const max=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--read', (max>0?100*scrollY/max:0)+'%');};scrollUpdate();addEventListener('scroll',scrollUpdate,{passive:true});addEventListener('resize',scrollUpdate,{passive:true});
+if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js');const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');observer.unobserve(e.target)}})},{rootMargin:'0px 0px -24px 0px',threshold:0.06});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));}
+
+/* V8 chapter interaction: hover/focus makes an editorial folio respond without borrowing the reference's disc design. */
+const folioChapters=[...document.querySelectorAll('.folio-chapter')];
+folioChapters.forEach(b=>{
+  b.addEventListener('mouseenter',()=>b.classList.add('active'));
+  b.addEventListener('mouseleave',()=>{if(b.dataset.selected!=='1')b.classList.remove('active')});
+  b.addEventListener('focus',()=>b.classList.add('active'));
+  b.addEventListener('blur',()=>{if(b.dataset.selected!=='1')b.classList.remove('active')});
+  b.addEventListener('click',()=>{
+    const already=b.dataset.selected==='1';
+    folioChapters.forEach(x=>{x.dataset.selected='0';x.classList.remove('active');x.setAttribute('aria-pressed','false')});
+    if(!already){b.dataset.selected='1';b.classList.add('active');b.setAttribute('aria-pressed','true')}
+  });
+  b.setAttribute('aria-pressed','false');
+});
+</script>
+</body>
+</html>
